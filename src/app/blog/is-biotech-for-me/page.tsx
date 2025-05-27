@@ -1,7 +1,7 @@
 
 "use client";
 
-import type { Metadata } from 'next';
+// Removed: import type { Metadata } from 'next'; 
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
@@ -95,20 +95,8 @@ const faqs: FaqItem[] = [
   }
 ];
 
-export const metadata: Metadata = {
-  title: "Is Biotech Really for Me? FAQ for Students",
-  description: "Explore common questions about biotechnology careers. Understand if biotech aligns with your interests, skills, and aspirations with BTGenZ's FAQ guide.",
-  openGraph: {
-    title: "Is Biotech Really for Me? FAQ for Students | BTGenZ",
-    description: "Answers to your pressing questions about choosing a career in biotechnology. Get clarity and make informed decisions with BTGenZ.",
-    url: "/blog/is-biotech-for-me",
-    type: "article",
-  },
-  twitter: {
-    title: "Is Biotech Really for Me? FAQ | BTGenZ",
-    description: "Confused about a biotech career? Our FAQ page helps students understand the field better.",
-  },
-};
+// Removed metadata export:
+// export const metadata: Metadata = { ... };
 
 const faqPageSchema = {
   "@context": "https://schema.org",
