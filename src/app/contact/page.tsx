@@ -23,7 +23,8 @@ import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { FOOTER_CONTACT_EMAIL } from '@/lib/constants';
 import { Mail, Send, Loader2, Info } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { submitContactForm, contactFormSchema, type ContactFormValues } from "./actions";
+import { submitContactForm } from "./actions";
+import { contactFormSchema, type ContactFormValues } from "./contact-validation";
 
 export default function ContactPage() {
   const { toast } = useToast();

@@ -1,27 +1,20 @@
 
 "use server";
 
-import * as z from "zod";
-
-export const contactFormSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }).max(500, {
-    message: "Message must not be longer than 500 characters.",
-  }),
-});
-
-export type ContactFormValues = z.infer<typeof contactFormSchema>;
+import type { ContactFormValues } from "./contact-validation";
+// Optionally, you could import contactFormSchema here as well if you wanted to perform
+// server-side validation again, though react-hook-form with zodResolver handles client-side.
+// import { contactFormSchema } from "./contact-validation";
 
 export async function submitContactForm(data: ContactFormValues) {
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 1000));
+
+  // Example of server-side validation (optional if client-side is trusted for this simulation)
+  // const parsedData = contactFormSchema.safeParse(data);
+  // if (!parsedData.success) {
+  //   return { success: false, message: "Invalid data received.", errors: parsedData.error.flatten().fieldErrors };
+  // }
 
   // In a real application, you would integrate an email service here.
   // For example, using Resend, SendGrid, or Nodemailer with an SMTP provider.
