@@ -22,7 +22,6 @@ import { Input } from '@/components/ui/input';
 import { Mail, Send, Loader2, Info } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { handleUnsubscribeClick } from "./actions"; // Keep for unsubscribe placeholder
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const newsletterFormSchema = z.object({
   email: z.string().email({
@@ -146,15 +145,6 @@ export default function NewsletterPage() {
               </button>
               {" "}at any time.
             </p>
-             <Alert variant="default" className="mt-8 text-left text-sm">
-              <Info className="h-4 w-4" />
-              <AlertTitle>Newsletter Service</AlertTitle>
-              <AlertDescription>
-                Email subscriptions are handled by our backend service. For full functionality,
-                including managing newsletter campaigns and a comprehensive unsubscribe process, further
-                backend integration may be required. The "Unsubscribe" link above is a placeholder for now.
-              </AlertDescription>
-            </Alert>
           </div>
         </SectionWrapper>
       </main>
