@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Briefcase, ClipboardList, FlaskConical, BellRing, LibraryBig, Users2, Newspaper, Building2, MapPin, CalendarDays, UserCheck, Instagram, Linkedin, Send, Youtube, Search, Menu } from 'lucide-react';
+import { Briefcase, ClipboardList, FlaskConical, BellRing, LibraryBig, Users2, Newspaper, Building2, MapPin, CalendarDays, UserCheck, Instagram, Linkedin, Send, Youtube, BookOpen, CheckCircle, FileText, HelpCircle, Lightbulb, Search, Menu, Milestone, Dna, Leaf, Factory, TestTube, BrainCircuit, Sparkles, Target, Microscope, Mail } from 'lucide-react';
 
 export interface FeaturedJob {
   id: string;
@@ -32,7 +32,7 @@ export interface ExploreCategory {
 export const EXPLORE_CATEGORIES: ExploreCategory[] = [
   { id: '1', name: 'Biotech Internships', description: 'Gain hands-on experience with leading biotech companies.', icon: Briefcase, link: '/blog/internships' },
   { id: '2', name: 'Government Exams', description: 'Explore opportunities in public sector biotech roles.', icon: ClipboardList, link: '/blog/govt-exams' },
-  { id: '3', name: 'Research Roles', description: 'Contribute to cutting-edge research and innovation.', icon: FlaskConical, link: '#' }, // Assuming this might link to a specific section or a general job board filtered for research
+  { id: '3', name: 'Research Roles', description: 'Contribute to cutting-edge research and innovation.', icon: FlaskConical, link: '/blog/career' }, // Updated link to general career page as research is broad
 ];
 
 export interface ValueProposition {
@@ -124,9 +124,9 @@ export interface DailyUpdate {
 }
 
 export const DAILY_UPDATES_PREVIEW: DailyUpdate[] = [
-  { id: 'du1', type: 'Internship', title: 'Research Intern (Genomics)', location: 'Bangalore', deadline: '2024-08-15', forWhom: 'B.Sc/M.Sc Biotech Students', link: '#' },
-  { id: 'du2', type: 'Job', title: 'Jr. Lab Technician', location: 'Remote/Hyderabad', deadline: '2024-08-20', forWhom: 'Diploma/B.Sc MLT/Biotech Freshers', link: '#' },
-  { id: 'du3', type: 'Internship', title: 'Content Writing (Biotech)', location: 'Work From Home', forWhom: 'Students with good writing skills', link: '#' },
+  { id: 'du1', type: 'Internship', title: 'Research Intern (Genomics)', location: 'Bangalore', deadline: '2024-08-15', forWhom: 'B.Sc/M.Sc Biotech Students', link: '/blog/internships' }, // Updated link
+  { id: 'du2', type: 'Job', title: 'Jr. Lab Technician', location: 'Remote/Hyderabad', deadline: '2024-08-20', forWhom: 'Diploma/B.Sc MLT/Biotech Freshers', link: '/blog/job-alerts' }, // Updated link
+  { id: 'du3', type: 'Internship', title: 'Content Writing (Biotech)', location: 'Work From Home', forWhom: 'Students with good writing skills', link: '/blog/internships' }, // Updated link
 ];
 
 export interface SocialLink {
@@ -149,6 +149,7 @@ export interface NavLinkItem {
   href: string;
   label: string;
   description?: string; // For NavigationMenuContent
+  icon?: LucideIcon; // Optional icon for menu items
 }
 
 export interface NavCategory {
@@ -160,28 +161,29 @@ export const HEADER_NAV_CONFIG: NavCategory[] = [
   {
     title: 'About',
     items: [
-      { href: '/about', label: 'About Us', description: 'Learn more about BTGenZ and our mission.' },
-      { href: '/contact', label: 'Contact Us', description: 'Get in touch with our team.' },
+      { href: '/about', label: 'About Us', description: 'Learn more about BTGenZ and our mission.', icon: Users2 },
+      { href: '/contact', label: 'Contact Us', description: 'Get in touch with our team.', icon: Mail },
     ],
   },
   {
     title: 'Blog & Updates',
     items: [
-      { href: '/blog/job-alerts', label: 'Job Alerts', description: 'Latest job opportunities in biotech.' },
-      { href: '/blog/internships', label: 'Internships', description: 'Find biotech internships for students.' },
-      { href: '/blog/govt-exams', label: 'Govt. Exam Tips', description: 'Prepare for government biotech exams.' },
-      { href: '/blog/industry', label: 'Industrial Insights', description: 'Trends and news from the biotech industry.' },
-      { href: '/blog/career', label: 'Career Guidance', description: 'Advice for your biotech career path.' },
-      { href: '/blog/stories', label: 'Success Stories', description: 'Inspiring stories from the community.' },
+      { href: '/blog/job-alerts', label: 'Job Alerts', description: 'Latest job opportunities in biotech.', icon: BellRing },
+      { href: '/blog/internships', label: 'Internships', description: 'Find biotech internships for students.', icon: Briefcase },
+      { href: '/blog/govt-exams', label: 'Govt. Exam Tips', description: 'Prepare for government biotech exams.', icon: LibraryBig },
+      { href: '/blog/industry', label: 'Industrial Insights', description: 'Trends and news from the biotech industry.', icon: Building2 },
+      { href: '/blog/career', label: 'Career Guidance', description: 'Advice for your biotech career path.', icon: BookOpen },
+      { href: '/blog/stories', label: 'Success Stories', description: 'Inspiring stories from the community.', icon: CheckCircle },
+      { href: '/blog/is-biotech-for-me', label: 'Is Biotech For Me?', description: 'Answer your career questions.', icon: HelpCircle },
     ],
   },
   {
     title: 'Legal',
     items: [
-      { href: '/privacy-policy', label: 'Privacy Policy', description: 'Our commitment to your privacy.' },
-      { href: '/terms', label: 'Terms & Conditions', description: 'Read our terms of service.' },
-      { href: '/copyright', label: 'Copyright', description: 'Information about copyright.' },
-      { href: '/disclaimer', label: 'Disclaimer', description: 'Important disclaimers.' },
+      { href: '/privacy-policy', label: 'Privacy Policy', description: 'Our commitment to your privacy.', icon: FileText },
+      { href: '/terms', label: 'Terms & Conditions', description: 'Read our terms of service.', icon: FileText },
+      { href: '/copyright', label: 'Copyright', description: 'Information about copyright.', icon: FileText },
+      { href: '/disclaimer', label: 'Disclaimer', description: 'Important disclaimers.', icon: FileText },
     ],
   },
 ];
@@ -189,7 +191,8 @@ export const HEADER_NAV_CONFIG: NavCategory[] = [
 export const NEWSLETTER_CTA: NavLinkItem = {
   href: '/newsletter',
   label: 'Newsletter',
-  description: 'Subscribe for exclusive updates and insights.'
+  description: 'Subscribe for exclusive updates and insights.',
+  icon: Newspaper,
 };
 
 // Footer Constants
@@ -203,7 +206,91 @@ export const FOOTER_QUICK_LINKS: NavLinkItem[] = [
   { href: '/privacy-policy', label: 'Privacy Policy' },
 ];
 
-export const FOOTER_CONTACT_EMAIL = "connect@btgenz.in"; // Updated primary email
+export const FOOTER_CONTACT_EMAIL = "connect@btgenz.in";
 export const SECONDARY_CONTACT_EMAIL = "msujay.work@gmail.com";
 export const FOOTER_PHONE_NUMBER = "+91-XXXXXXXXXX"; // Replace with actual number if available
-    
+
+
+// Searchable Blog Articles
+export interface SearchableBlogArticle {
+  id: string;
+  title: string;
+  href: string;
+  description: string;
+  icon: LucideIcon; // Icon for display in search results
+}
+
+export const SEARCHABLE_BLOG_ARTICLES: SearchableBlogArticle[] = [
+  {
+    id: 'blog-job-alerts',
+    title: 'Job Alerts',
+    href: '/blog/job-alerts',
+    description: 'Latest job opportunities in biotech for students and freshers.',
+    icon: BellRing,
+  },
+  {
+    id: 'blog-internships',
+    title: 'Internships',
+    href: '/blog/internships',
+    description: 'Find biotech internships to kickstart your career.',
+    icon: Briefcase,
+  },
+  {
+    id: 'blog-govt-exams',
+    title: 'Govt. Exam Tips',
+    href: '/blog/govt-exams',
+    description: 'Guidance and tips for government biotech entrance exams.',
+    icon: LibraryBig,
+  },
+  {
+    id: 'blog-industry',
+    title: 'Industrial Insights',
+    href: '/blog/industry',
+    description: 'Stay updated on trends and news from the biotech industry.',
+    icon: Building2,
+  },
+  {
+    id: 'blog-career',
+    title: 'Career Guidance',
+    href: '/blog/career',
+    description: 'Comprehensive advice and roadmaps for your biotech career path.',
+    icon: BookOpen,
+  },
+  {
+    id: 'blog-stories',
+    title: 'Success Stories',
+    href: '/blog/stories',
+    description: 'Inspiring journeys and stories from the biotech community.',
+    icon: CheckCircle,
+  },
+  {
+    id: 'blog-is-biotech-for-me',
+    title: 'Is Biotech Really for Me?',
+    href: '/blog/is-biotech-for-me',
+    description: 'A guide with FAQs to help you decide if biotech is your field.',
+    icon: HelpCircle,
+  },
+  // You can add other important pages here if you want them to be searchable
+  // For example, the About Us or Contact Us page:
+  {
+    id: 'page-about',
+    title: 'About Us',
+    href: '/about',
+    description: 'Learn more about BTGenZ, our mission, and our team.',
+    icon: Users2,
+  },
+  {
+    id: 'page-contact',
+    title: 'Contact Us',
+    href: '/contact',
+    description: 'Get in touch with the BTGenZ team for queries or collaborations.',
+    icon: Mail,
+  },
+   {
+    id: 'page-newsletter',
+    title: 'Newsletter Subscription',
+    href: '/newsletter',
+    description: 'Subscribe to get the latest biotech news, job alerts, and career insights.',
+    icon: Newspaper,
+  },
+];
