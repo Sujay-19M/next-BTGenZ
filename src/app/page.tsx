@@ -1,3 +1,4 @@
+
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { HeroSection } from '@/components/btgenz/hero-section';
@@ -10,6 +11,7 @@ import { ExploreCategories } from '@/components/btgenz/explore-categories';
 import { ValuePropositions } from '@/components/btgenz/value-propositions';
 import { NewsSummarizer } from '@/components/btgenz/news-summarizer';
 import { CommunityComments } from '@/components/btgenz/community-comments';
+import { FeedbackForm } from '@/components/btgenz/feedback-form';
 import { CtaConnectFollow } from '@/components/btgenz/cta-connect-follow';
 
 
@@ -28,6 +30,7 @@ export default function Home() {
         <ValuePropositions />
         <NewsSummarizer />
         <CommunityComments />
+        <FeedbackForm />
         <CtaConnectFollow />
       </main>
       <Footer />

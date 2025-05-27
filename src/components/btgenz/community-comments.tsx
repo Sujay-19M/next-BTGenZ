@@ -1,4 +1,5 @@
 
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -24,14 +25,14 @@ export function CommunityComments() {
   const animationDurationSeconds = scrollWidth / animationSpeedPxPerSecond;
 
   return (
-    <SectionWrapper id="community" className="bg-muted/30">
+    <SectionWrapper id="community" className="bg-background"> {/* Changed background for better contrast if form is on muted */}
       <SectionTitle subtitle="Hear from students who found clarity and confidence with BTGenZ.">
         What Our Students Say
       </SectionTitle>
       <div className="w-full overflow-x-hidden pb-4">
         <div
           className="flex animate-marquee-slow pause-on-hover gap-x-6"
-          style={{ '--marquee-duration': `${animationDurationSeconds}s` } as React.CSSProperties}
+          style={{ '--marquee-duration': `${animationDurationSeconds}s`, '--gap-width': `${gapPx}px` } as React.CSSProperties}
         >
           {duplicatedComments.map((comment: CommunityComment, index: number) => (
             <Card
@@ -47,17 +48,19 @@ export function CommunityComments() {
                     <AvatarImage src={comment.avatarUrl} alt={comment.user} data-ai-hint={comment.dataAiHint} />
                     <AvatarFallback>{comment.user.substring(0, 1)}</AvatarFallback>
                   </Avatar>
-                  <div className="flex-grow">
+                  <div className="flex-grow overflow-hidden"> {/* Added overflow-hidden for long names */}
                     <div className="flex items-center justify-between">
-                       <CardTitle className="text-lg font-semibold text-primary">{comment.user}</CardTitle>
+                       <CardTitle className="text-lg font-semibold text-primary truncate"> {/* Added truncate for long names */}
+                         {comment.user}
+                       </CardTitle>
                        {comment.verified && (
-                          <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-300 dark:bg-green-700/30 dark:text-green-300 dark:border-green-500 text-xs">
+                          <Badge variant="secondary" className="flex-shrink-0 bg-green-100 text-green-700 border-green-300 dark:bg-green-700/30 dark:text-green-300 dark:border-green-500 text-xs">
                             <UserCheck className="w-3.5 h-3.5 mr-1" />
                             Verified
                           </Badge>
                         )}
                     </div>
-                    {comment.location && <p className="text-sm text-muted-foreground">{comment.location}</p>}
+                    {comment.location && <p className="text-sm text-muted-foreground truncate">{comment.location}</p>} {/* Added truncate */}
                   </div>
                 </div>
               </CardHeader>
@@ -74,8 +77,8 @@ export function CommunityComments() {
       </div>
       <div className="text-center mt-10">
         <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg transform transition-transform hover:scale-105">
-          <Link href="#"> {/* Placeholder for community link */}
-            Join the BTGenZ Community
+          <Link href="#feedback-form">
+            Share Your Experience
             <Users2 className="ml-2 h-5 w-5" />
           </Link>
         </Button>
