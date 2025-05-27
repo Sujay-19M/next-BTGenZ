@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Briefcase, ClipboardList, FlaskConical, BellRing, LibraryBig, Users2, Newspaper, Building2, MapPin, CalendarDays, UserCheck, Instagram, Linkedin, Send, Youtube } from 'lucide-react';
+import { Briefcase, ClipboardList, FlaskConical, BellRing, LibraryBig, Users2, Newspaper, Building2, MapPin, CalendarDays, UserCheck, Instagram, Linkedin, Send, Youtube, Search, Menu } from 'lucide-react';
 
 export interface FeaturedJob {
   id: string;
@@ -138,8 +138,72 @@ export interface SocialLink {
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { id: 'insta', name: 'Instagram', icon: Instagram, href: '#', label: 'Follow on Instagram' },
-  { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, href: '#', label: 'Connect on LinkedIn' },
-  { id: 'telegram', name: 'Telegram', icon: Send, href: '#', label: 'Join on Telegram' },
+  { id: 'insta', name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/btgenz_official', label: 'Follow on Instagram' },
+  { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/btgenz', label: 'Connect on LinkedIn' },
+  { id: 'telegram', name: 'Telegram', icon: Send, href: 'https://t.me/btgenz', label: 'Join on Telegram' },
   { id: 'youtube', name: 'YouTube', icon: Youtube, href: '#', label: 'Subscribe on YouTube (Coming Soon)' },
 ];
+
+// Navigation Constants
+export interface NavLinkItem {
+  href: string;
+  label: string;
+  description?: string; // For NavigationMenuContent
+}
+
+export interface NavCategory {
+  title: string;
+  items: NavLinkItem[];
+}
+
+export const HEADER_NAV_CONFIG: NavCategory[] = [
+  {
+    title: 'About',
+    items: [
+      { href: '/about', label: 'About Us', description: 'Learn more about BTGenZ and our mission.' },
+      { href: '/contact', label: 'Contact Us', description: 'Get in touch with our team.' },
+    ],
+  },
+  {
+    title: 'Blog & Updates',
+    items: [
+      { href: '/blog/job-alerts', label: 'Job Alerts', description: 'Latest job opportunities in biotech.' },
+      { href: '/blog/internships', label: 'Internships', description: 'Find biotech internships for students.' },
+      { href: '/blog/govt-exams', label: 'Govt. Exam Tips', description: 'Prepare for government biotech exams.' },
+      { href: '/blog/industry', label: 'Industrial Insights', description: 'Trends and news from the biotech industry.' },
+      { href: '/blog/career', label: 'Career Guidance', description: 'Advice for your biotech career path.' },
+      { href: '/blog/stories', label: 'Success Stories', description: 'Inspiring stories from the community.' },
+    ],
+  },
+  {
+    title: 'Legal',
+    items: [
+      { href: '/privacy-policy', label: 'Privacy Policy', description: 'Our commitment to your privacy.' },
+      { href: '/terms', label: 'Terms & Conditions', description: 'Read our terms of service.' },
+      { href: '/copyright', label: 'Copyright', description: 'Information about copyright.' },
+      { href: '/disclaimer', label: 'Disclaimer', description: 'Important disclaimers.' },
+    ],
+  },
+];
+
+export const NEWSLETTER_CTA: NavLinkItem = {
+  href: '/newsletter',
+  label: 'Newsletter',
+  description: 'Subscribe for exclusive updates and insights.'
+};
+
+// Footer Constants
+export const FOOTER_ABOUT_TEXT = "BTGenZ is your biotech buddy, guiding students from Class 10 to a career in biotechnology with resources, job alerts, and community support.";
+
+export const FOOTER_QUICK_LINKS: NavLinkItem[] = [
+  { href: '/blog/career', label: 'Career Guidance' },
+  { href: '/blog/job-alerts', label: 'Job Alerts' },
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact Us' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+];
+
+export const FOOTER_CONTACT_EMAIL = "support@btgenz.com";
+export const FOOTER_PHONE_NUMBER = "+91-XXXXXXXXXX"; // Replace with actual number if available
+
+    
