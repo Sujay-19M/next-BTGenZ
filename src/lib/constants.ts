@@ -52,8 +52,8 @@ export const VALUE_PROPOSITIONS: ValueProposition[] = [
 export interface CommunityComment {
   id: string;
   user: string;
-  avatarUrl: string;
-  dataAiHint: string;
+  avatarUrl: string; // Set to '' if no real image, to show fallback
+  dataAiHint: string; // For future image selection
   comment: string;
   timestamp: string;
   location?: string;
@@ -65,7 +65,7 @@ export const COMMUNITY_COMMENTS: CommunityComment[] = [
     id: '1',
     user: 'Ananya S.',
     location: 'Class 12, Kolkata',
-    avatarUrl: 'https://placehold.co/48x48.png',
+    avatarUrl: '', // Empty string will trigger fallback initials
     dataAiHint: 'student girl',
     comment: 'BTGenZ helped me understand the reality of biotech jobs after school. Super grateful!',
     timestamp: '3 days ago',
@@ -75,7 +75,7 @@ export const COMMUNITY_COMMENTS: CommunityComment[] = [
     id: '2',
     user: 'Rohan K.',
     location: 'Class 10, Pune',
-    avatarUrl: 'https://placehold.co/48x48.png',
+    avatarUrl: '',
     dataAiHint: 'student boy',
     comment: 'I was clueless about biotech after 10th. BTGenZ gave me clarity and confidence.',
     timestamp: '1 week ago',
@@ -85,7 +85,7 @@ export const COMMUNITY_COMMENTS: CommunityComment[] = [
     id: '3',
     user: 'Priya V.',
     location: 'B.Tech Biotech, Bangalore',
-    avatarUrl: 'https://placehold.co/48x48.png',
+    avatarUrl: '',
     dataAiHint: 'female student',
     comment: 'The daily job updates are a lifesaver! Found my first internship through BTGenZ. The insights on government exams are also super helpful.',
     timestamp: '2 days ago',
@@ -95,7 +95,7 @@ export const COMMUNITY_COMMENTS: CommunityComment[] = [
     id: '4',
     user: 'Rajesh M.',
     location: 'Aspiring Researcher, Delhi',
-    avatarUrl: 'https://placehold.co/48x48.png',
+    avatarUrl: '',
     dataAiHint: 'male researcher',
     comment: "BTGenZ's career quiz really helped me narrow down my options in biotech. Highly recommend! The community is very supportive too.",
     timestamp: '5 days ago',
@@ -105,7 +105,7 @@ export const COMMUNITY_COMMENTS: CommunityComment[] = [
     id: '5',
     user: 'Ananya M.',
     location: 'M.Sc. Student, Chennai',
-    avatarUrl: 'https://placehold.co/48x48.png',
+    avatarUrl: '',
     dataAiHint: 'young woman',
     comment: 'Finally, a platform that understands the confusion students face. The articles on industry trends are so insightful and well-researched.',
     timestamp: '1 week ago',
@@ -290,7 +290,7 @@ export const SEARCHABLE_BLOG_ARTICLES: SearchableBlogArticle[] = [
     id: 'page-newsletter',
     title: 'Newsletter Subscription',
     href: '/newsletter',
-    description: 'Subscribe to get the latest biotech news, job alerts, and career insights.',
+    description: 'Get the latest biotech news, job alerts, and career insights.',
     icon: Newspaper,
   },
 ];
