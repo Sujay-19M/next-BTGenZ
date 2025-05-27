@@ -1,33 +1,39 @@
+
 "use client";
 
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
+type Theme = "light" | "dark";
+
 export function ThemeToggle() {
-  const [theme, setThemeState] = React.useState<"theme-light" | "dark" | "system">("system");
-
-  React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setThemeState(isDarkMode ? "dark" : "theme-light");
-  }, []);
-
-  React.useEffect(() => {
-    const isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList.toggle("dark", isDark);
-    try {
-      localStorage.setItem("theme", theme);
-    } catch (e) {
-      // localStorage is not available
+  const [theme, setTheme] = React.useState<Theme>(() => {
+    // Initialize theme from localStorage on the client, default to 'light'
+    // This function runs when the component initializes.
+    if (typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme === "dark" || storedTheme === "light") {
+        return storedTheme;
+      }
     }
+    return "light"; // Default theme if nothing in localStorage or if on server (though this is client component)
+  });
+
+  React.useEffect(() => {
+    // This effect runs whenever the `theme` state changes.
+    // It applies the appropriate class to the <html> element and updates localStorage.
+    const root = window.document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setThemeState((prevTheme) => (prevTheme === "dark" ? "theme-light" : "dark"));
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
 
   return (
