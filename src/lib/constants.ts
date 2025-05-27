@@ -138,7 +138,7 @@ export interface SocialLink {
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { id: 'insta', name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/btgenz_official', label: 'Follow on Instagram' },
+  { id: 'insta', name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/btgenz', label: 'Follow on Instagram' },
   { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/btgenz', label: 'Connect on LinkedIn' },
   { id: 'telegram', name: 'Telegram', icon: Send, href: 'https://t.me/btgenz', label: 'Join on Telegram' },
   { id: 'youtube', name: 'YouTube', icon: Youtube, href: '#', label: 'Subscribe on YouTube (Coming Soon)' },
@@ -294,3 +294,4 @@ export const SEARCHABLE_BLOG_ARTICLES: SearchableBlogArticle[] = [
     icon: Newspaper,
   },
 ];
+
