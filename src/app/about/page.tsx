@@ -97,10 +97,10 @@ export default function AboutPage() {
                   </CardHeader>
                   <CardContent className="text-center text-muted-foreground p-6 pt-0">
                     <p className="mb-4">
-                      Sujay is passionate about simplifying biotechnology for the next generation. With a background in [Your Background/Field - e.g., student research, biotech industry], he created BTGenZ to bridge the information gap for aspiring biotechnologists in India.
+                      Sujay completed his Masters in Biotechnology from Techno India University in 2019. He is passionate about simplifying biotechnology for the next generation and created BTGenZ to bridge the information gap for aspiring biotechnologists in India.
                     </p>
                     <Button variant="outline" asChild className="border-primary text-primary hover:bg-primary/10">
-                      <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank" rel="noopener noreferrer">
+                      <a href="https://www.linkedin.com/in/sujaym19/" target="_blank" rel="noopener noreferrer">
                         <Linkedin className="mr-2 h-4 w-4" /> Connect on LinkedIn
                       </a>
                     </Button>
