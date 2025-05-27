@@ -24,7 +24,7 @@ export default function TermsPage() {
             <p>The Content found on or through this Service is the property of BTGenZ or used with permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use said Content, whether in whole or in part, for commercial purposes or for personal gain, without express advance written permission from us.</p>
 
             <h2>Intellectual Property</h2>
-            <p>The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of BTGenZ and its licensors. The Service is protected by copyright, trademark, and other laws of both India and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of BTGenZ.</p>
+            <p>The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of BTGenZ and its licensors. The Service is protected by copyright, trademark, and other laws of both India and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without την prior written consent of BTGenZ.</p>
             
             <h2>Links To Other Web Sites</h2>
             <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by BTGenZ. BTGenZ has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that BTGenZ shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
@@ -41,5 +41,3 @@ export default function TermsPage() {
     </>
   );
 }
-
-    
