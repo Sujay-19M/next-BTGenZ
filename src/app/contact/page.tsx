@@ -3,7 +3,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { useState, useTransition } from 'react';
 
 import { Button } from "@/components/ui/button";
@@ -24,44 +23,7 @@ import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { FOOTER_CONTACT_EMAIL } from '@/lib/constants';
 import { Mail, Send, Loader2, Info } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-
-const contactFormSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }).max(500, {
-    message: "Message must not be longer than 500 characters.",
-  }),
-});
-
-type ContactFormValues = z.infer<typeof contactFormSchema>;
-
-// Server Action
-async function submitContactForm(data: ContactFormValues) {
-  "use server";
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-
-  // In a real application, you would integrate an email service here.
-  // For example, using Resend, SendGrid, or Nodemailer with an SMTP provider.
-  console.log("Contact Form Submitted:");
-  console.log("Name:", data.name);
-  console.log("Email:", data.email);
-  console.log("Message:", data.message);
-  console.log(`Simulated: Would send email to connect@btgenz.in and msujay.work@gmail.com`);
-
-  // Simulate success
-  return { success: true, message: "Your message has been sent successfully! We'll get back to you soon." };
-  
-  // Example of error simulation:
-  // return { success: false, message: "Failed to send message. Please try again later." };
-}
-
+import { submitContactForm, contactFormSchema, type ContactFormValues } from "./actions";
 
 export default function ContactPage() {
   const { toast } = useToast();
