@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 
 export default function CopyrightPage() {
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
   return (
     <>
       <Header />
@@ -20,7 +21,7 @@ export default function CopyrightPage() {
             <p>We respect the intellectual property of others. If you believe that your work has been copied in a way that constitutes copyright infringement, please contact us with the details.</p>
 
             <h2>Contact Us</h2>
-            <p>For any copyright-related inquiries, please contact us at: {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com"}</p>
+            <p>For any copyright-related inquiries, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>

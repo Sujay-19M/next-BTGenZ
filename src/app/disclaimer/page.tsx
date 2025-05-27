@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 
 export default function DisclaimerPage() {
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
   return (
     <>
       <Header />
@@ -28,7 +29,7 @@ export default function DisclaimerPage() {
             <p>The site may contain testimonials by users of our products and/or services. These testimonials reflect the real-life experiences and opinions of such users. However, the experiences are personal to those particular users, and may not necessarily be representative of all users of our products and/or services. We do not claim, and you should not assume, that all users will have the same experiences.</p>
 
             <h2>Contact Us</h2>
-            <p>If you have any questions about this Disclaimer, please contact us at: {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com"}</p>
+            <p>If you have any questions about this Disclaimer, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>

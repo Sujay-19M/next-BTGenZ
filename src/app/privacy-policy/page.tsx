@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 
 export default function PrivacyPolicyPage() {
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
   return (
     <>
       <Header />
@@ -48,7 +49,7 @@ export default function PrivacyPolicyPage() {
             <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
 
             <h2>Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at: {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com"}</p>
+            <p>If you have any questions about this Privacy Policy, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>

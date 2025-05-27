@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 
 export default function TermsPage() {
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
   return (
     <>
       <Header />
@@ -33,7 +34,7 @@ export default function TermsPage() {
             <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
 
             <h2>Contact Us</h2>
-            <p>If you have any questions about these Terms, please contact us at: {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com"}</p>
+            <p>If you have any questions about these Terms, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>
