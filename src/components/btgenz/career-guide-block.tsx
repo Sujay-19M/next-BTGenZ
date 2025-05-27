@@ -1,9 +1,10 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { SectionTitle } from '@/components/btgenz/section-title';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lightbulb, HelpCircle, ChevronRight } from 'lucide-react';
+import { HelpCircle, ChevronRight } from 'lucide-react';
 
 export function CareerGuideBlock() {
   return (
@@ -26,12 +27,12 @@ export function CareerGuideBlock() {
           </CardHeader>
           <CardContent className="p-8 space-y-6">
             <p className="text-lg text-foreground">
-              Feeling overwhelmed by choices? Our <span className="font-semibold text-accent">60-second Biotech Career Fit Quiz</span> might offer some clarity. Or, dive into our guide: <Link href="#" className="text-primary hover:underline font-medium">"Is Biotech Really for Me?"</Link>
+              Feeling overwhelmed by choices? Our <span className="font-semibold text-accent">60-second Biotech Career Fit Quiz</span> might offer some clarity. Or, dive into our guide: <Link href="/blog/is-biotech-for-me" className="text-primary hover:underline font-medium">"Is Biotech Really for Me?"</Link>
             </p>
           </CardContent>
           <CardFooter className="p-8 pt-0 flex justify-center">
             <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform transition-transform hover:scale-105">
-              <Link href="#"> {/* Placeholder link */}
+              <Link href="/blog/career"> 
                 Explore Biotech Careers
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Link>
