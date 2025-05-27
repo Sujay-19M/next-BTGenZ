@@ -1,6 +1,7 @@
 
 "use client";
 
+import type { Metadata } from 'next'; // No need to export metadata from client component
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -21,7 +22,22 @@ import {
 import { Input } from '@/components/ui/input';
 import { Mail, Send, Loader2, Info } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { handleUnsubscribeClick } from "./actions"; // Keep for unsubscribe placeholder
+import { handleUnsubscribeClick } from "./actions";
+
+// export const metadata: Metadata = {
+//   title: "Subscribe to BTGenZ Newsletter",
+//   description: "Stay ahead with BTGenZ! Get the latest biotech job alerts, internship opportunities, career guidance, and industry insights delivered to your inbox.",
+//   openGraph: {
+//     title: "Subscribe to BTGenZ Newsletter for Biotech Updates",
+//     description: "Join the BTGenZ community by subscribing to our newsletter. Get exclusive content on biotech careers and opportunities in India.",
+//     url: "/newsletter",
+//     type: "website",
+//   },
+//   twitter: {
+//     title: "BTGenZ Newsletter Subscription",
+//     description: "Don't miss out! Subscribe to the BTGenZ newsletter for biotech insights.",
+//   },
+// };
 
 const newsletterFormSchema = z.object({
   email: z.string().email({
@@ -60,13 +76,13 @@ export default function NewsletterPage() {
         if (res.ok) {
           toast({
             title: "Subscribed!",
-            description: responseText || "You've been successfully subscribed.",
+            description: responseText || "You've been successfully subscribed to BTGenZ updates.",
           });
           form.reset();
         } else {
           toast({
             title: "Subscription Failed",
-            description: responseText || "Could not subscribe. Please try again.",
+            description: responseText || "Could not subscribe. Please try again or check your email address.",
             variant: "destructive",
           });
         }
@@ -74,7 +90,7 @@ export default function NewsletterPage() {
         console.error("Subscription error:", error);
         toast({
           title: "Subscription Error",
-          description: "An unexpected error occurred. Please try again.",
+          description: "An unexpected error occurred while subscribing. Please try again later.",
           variant: "destructive",
         });
       }
@@ -83,7 +99,6 @@ export default function NewsletterPage() {
 
   const onUnsubscribeClick = async () => {
     const result = await handleUnsubscribeClick();
-    // Using toast for consistency instead of alert
     toast({
         title: "Unsubscribe Information",
         description: result.message,
@@ -143,7 +158,7 @@ export default function NewsletterPage() {
               >
                 Unsubscribe
               </button>
-              {" "}at any time.
+              {" "}at any time (Unsubscribe functionality is currently under development).
             </p>
           </div>
         </SectionWrapper>

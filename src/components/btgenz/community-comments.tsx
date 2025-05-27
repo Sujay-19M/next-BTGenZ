@@ -1,5 +1,4 @@
 
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,7 +24,7 @@ export function CommunityComments() {
   const animationDurationSeconds = scrollWidth / animationSpeedPxPerSecond;
 
   return (
-    <SectionWrapper id="community" className="bg-background"> {/* Changed background for better contrast if form is on muted */}
+    <SectionWrapper id="community" className="bg-background">
       <SectionTitle subtitle="Hear from students who found clarity and confidence with BTGenZ.">
         What Our Students Say
       </SectionTitle>
@@ -45,12 +44,12 @@ export function CommunityComments() {
               <CardHeader className="p-6">
                 <div className="flex items-start gap-4">
                   <Avatar className="h-12 w-12 border-2 border-primary/50">
-                    <AvatarImage src={comment.avatarUrl} alt={comment.user} data-ai-hint={comment.dataAiHint} />
+                    <AvatarImage src={comment.avatarUrl} alt={`${comment.user}'s avatar`} data-ai-hint={comment.dataAiHint} />
                     <AvatarFallback>{comment.user.substring(0, 1)}</AvatarFallback>
                   </Avatar>
-                  <div className="flex-grow overflow-hidden"> {/* Added overflow-hidden for long names */}
+                  <div className="flex-grow overflow-hidden">
                     <div className="flex items-center justify-between">
-                       <CardTitle className="text-lg font-semibold text-primary truncate"> {/* Added truncate for long names */}
+                       <CardTitle className="text-lg font-semibold text-primary truncate">
                          {comment.user}
                        </CardTitle>
                        {comment.verified && (
@@ -60,7 +59,7 @@ export function CommunityComments() {
                           </Badge>
                         )}
                     </div>
-                    {comment.location && <p className="text-sm text-muted-foreground truncate">{comment.location}</p>} {/* Added truncate */}
+                    {comment.location && <p className="text-sm text-muted-foreground truncate">{comment.location}</p>}
                   </div>
                 </div>
               </CardHeader>

@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -29,7 +30,7 @@ export function FeaturedJobs() {
                   </div>
                    <Image
                       src={job.logoUrl}
-                      alt={`${job.company} logo`}
+                      alt={`${job.company} logo - ${job.title}`}
                       width={60}
                       height={40}
                       className="rounded object-contain"

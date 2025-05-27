@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
@@ -6,6 +7,21 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Lightbulb, Milestone, Dna, Leaf, Factory, TestTube, BrainCircuit, Sparkles, Target, CheckCircle, Microscope, BookOpen, Users, LucideIcon } from 'lucide-react';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: "Biotechnology Career Guide for Beginners in India",
+  description: "Your future in Biotechnology starts here. Explore diverse career paths, major fields, and tips for aspiring biotechnologists in India with BTGenZ.",
+  openGraph: {
+    title: "Biotechnology Career Guide for Beginners in India | BTGenZ",
+    description: "A comprehensive guide to biotech careers in India. Understand different fields like healthcare, agriculture, AI in biotech, and more. Perfect for students.",
+    url: "/blog/career",
+    type: "article",
+  },
+  twitter: {
+    title: "Explore Biotech Careers in India - A Beginner's Guide | BTGenZ",
+    description: "Discover where a passion for science can lead in the biotech industry. Career map, major fields, and tips from BTGenZ.",
+  },
+};
 
 interface CareerField {
   title: string;
@@ -130,7 +146,7 @@ export default function CareerGuidancePage() {
                   <h3 className="text-xl font-semibold text-foreground mb-2">Biotech Career Pathways Infographic</h3>
                   <Image 
                     src="https://placehold.co/600x400.png" 
-                    alt="Placeholder for Biotech Career Pathways Infographic" 
+                    alt="Placeholder for a Biotech Career Pathways Infographic showing branching fields." 
                     width={600} 
                     height={400} 
                     className="mx-auto rounded-md shadow-md"
@@ -208,5 +224,3 @@ export default function CareerGuidancePage() {
     </>
   );
 }
-
-    

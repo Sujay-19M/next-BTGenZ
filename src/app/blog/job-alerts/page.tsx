@@ -1,7 +1,23 @@
 
+import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
+
+export const metadata: Metadata = {
+  title: "Biotech Job Alerts in India - Latest Openings",
+  description: "Stay updated with the latest biotech job opportunities for students, freshers, and professionals across India. Curated and verified by BTGenZ.",
+  openGraph: {
+    title: "Biotech Job Alerts in India - BTGenZ",
+    description: "Find current job openings in the Indian biotech sector. BTGenZ provides daily alerts for aspiring biotechnologists.",
+    url: "/blog/job-alerts",
+    type: "website", // Or "article" if this page functions like one
+  },
+  twitter: {
+    title: "Latest Biotech Jobs in India | BTGenZ",
+    description: "Your source for daily biotech job alerts. Don't miss out on opportunities in India's growing biotech industry.",
+  },
+};
 
 export default function JobAlertsPage() {
   return (

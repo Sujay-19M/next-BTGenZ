@@ -1,9 +1,25 @@
 
+import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Target, Lightbulb } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: "About BTGenZ - Our Mission and Story",
+  description: "Learn about BTGenZ, our mission to guide Indian students in biotechnology careers, and what we offer to help you succeed in the biotech field.",
+  openGraph: {
+    title: "About BTGenZ - Our Mission and Story",
+    description: "Discover BTGenZ: a platform dedicated to helping Indian students navigate the world of biotechnology careers, jobs, and education.",
+    url: "/about",
+    type: "website",
+  },
+  twitter: {
+    title: "About BTGenZ - Guiding India's Future Biotechnologists",
+    description: "Meet BTGenZ! We're passionate about making biotech careers accessible and understandable for students across India.",
+  },
+};
 
 export default function AboutPage() {
   return (

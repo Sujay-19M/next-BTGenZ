@@ -1,7 +1,23 @@
 
+import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
+
+export const metadata: Metadata = {
+  title: "Biotech Internships in India - Opportunities for Students",
+  description: "Find biotech internship opportunities in India. Gain hands-on experience and kickstart your career with BTGenZ's curated list of internships.",
+  openGraph: {
+    title: "Biotech Internships in India - BTGenZ",
+    description: "Explore biotech internships for students and freshers across India. Practical experience for your future career, curated by BTGenZ.",
+    url: "/blog/internships",
+    type: "website",
+  },
+  twitter: {
+    title: "Find Biotech Internships in India | BTGenZ",
+    description: "Looking for biotech internships? BTGenZ lists opportunities for students to gain real-world experience.",
+  },
+};
 
 export default function InternshipsPage() {
   return (

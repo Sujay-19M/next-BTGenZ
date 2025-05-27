@@ -25,6 +25,17 @@ export function FeedbackForm() {
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      if (file.size > 2 * 1024 * 1024) { // Limit image size to 2MB
+        toast({
+          title: "Image Too Large",
+          description: "Please select an image smaller than 2MB.",
+          variant: "destructive",
+        });
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ''; // Clear the input
+        }
+        return;
+      }
       setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -50,10 +61,17 @@ export function FeedbackForm() {
 
     setIsSubmitting(true);
 
-    // Simulate submission
+    // Simulate submission (In a real app, this would be an API call)
+    // For now, we just log and show a success toast.
+    // The actual image upload and comment saving would require backend logic.
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    console.log("Feedback Submitted:", { name, comment, imageName: imageFile?.name });
+    console.log("Feedback Submitted:", { 
+      name, 
+      comment, 
+      imageName: imageFile?.name, 
+      imageSize: imageFile?.size 
+    });
 
     toast({
       title: "Feedback Sent!",
@@ -99,6 +117,7 @@ export function FeedbackForm() {
                 onChange={(e) => setName(e.target.value)}
                 disabled={isSubmitting}
                 className="shadow-inner"
+                required
               />
             </div>
             <div className="space-y-2">
@@ -113,16 +132,18 @@ export function FeedbackForm() {
                 rows={5}
                 disabled={isSubmitting}
                 className="shadow-inner"
+                required
+                minLength={10}
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="image" className="flex items-center gap-2 text-foreground">
-                <Upload className="w-4 h-4" /> Add an Image (Optional)
+                <Upload className="w-4 h-4" /> Add an Image (Optional, max 2MB)
               </Label>
               <Input
                 id="image"
                 type="file"
-                accept="image/*"
+                accept="image/png, image/jpeg, image/gif"
                 onChange={handleImageChange}
                 disabled={isSubmitting}
                 ref={fileInputRef}
@@ -134,7 +155,7 @@ export function FeedbackForm() {
                 <p className="text-sm text-muted-foreground mb-2">Image Preview:</p>
                 <Image
                   src={imagePreview}
-                  alt="Selected image preview"
+                  alt="Selected image preview for feedback form"
                   width={100}
                   height={100}
                   className="rounded-md object-cover max-h-[100px] w-auto"

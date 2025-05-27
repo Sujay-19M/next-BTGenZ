@@ -1,6 +1,7 @@
 
 "use client";
 
+import type { Metadata } from 'next'; // Ensure Metadata type is imported if used directly on page
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from 'react';
@@ -25,6 +26,24 @@ import { Mail, Send, Loader2, Info, MessageCircleQuestion, Lightbulb, Handshake 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { submitContactForm } from "./actions";
 import { contactFormSchema, type ContactFormValues } from "./contact-validation";
+
+// Note: Metadata for client components is usually set in layout.tsx or parent server components.
+// However, if this page could potentially be a server component in the future or for clarity:
+// export const metadata: Metadata = {
+//   title: "Contact BTGenZ - Get in Touch",
+//   description: "Have questions about biotechnology careers, or want to collaborate? Contact BTGenZ. We're here to help students and enthusiasts in India.",
+//   openGraph: {
+//     title: "Contact BTGenZ - We'd Love to Hear From You",
+//     description: "Reach out to BTGenZ for support, feedback, or partnership inquiries related to biotechnology education and careers in India.",
+//     url: "/contact",
+//     type: "website",
+//   },
+//   twitter: {
+//     title: "Contact BTGenZ",
+//     description: "Connect with BTGenZ for all your biotech career queries and suggestions.",
+//   },
+// };
+
 
 export default function ContactPage() {
   const { toast } = useToast();
@@ -62,8 +81,6 @@ export default function ContactPage() {
           });
           setFormError(result.message || "Failed to send message.");
           if (result.errors) {
-            // Optionally, you could iterate through result.errors and set specific form errors
-            // For now, just showing the general message.
             console.error("Validation errors:", result.errors);
           }
         }

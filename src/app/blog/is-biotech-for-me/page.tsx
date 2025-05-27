@@ -1,4 +1,7 @@
 
+"use client";
+
+import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
@@ -92,15 +95,47 @@ const faqs: FaqItem[] = [
   }
 ];
 
+export const metadata: Metadata = {
+  title: "Is Biotech Really for Me? FAQ for Students",
+  description: "Explore common questions about biotechnology careers. Understand if biotech aligns with your interests, skills, and aspirations with BTGenZ's FAQ guide.",
+  openGraph: {
+    title: "Is Biotech Really for Me? FAQ for Students | BTGenZ",
+    description: "Answers to your pressing questions about choosing a career in biotechnology. Get clarity and make informed decisions with BTGenZ.",
+    url: "/blog/is-biotech-for-me",
+    type: "article",
+  },
+  twitter: {
+    title: "Is Biotech Really for Me? FAQ | BTGenZ",
+    description: "Confused about a biotech career? Our FAQ page helps students understand the field better.",
+  },
+};
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 
 export default function IsBiotechForMePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+      />
       <Header />
       <main className="flex-grow">
         <SectionWrapper>
           <div className="max-w-3xl mx-auto prose dark:prose-invert">
-            <h1 className="text-primary text-center mb-8">Is Biotech Really for Me? A Guide for Students</h1>
+            <h1 className="text-primary text-center !mb-2">Is Biotech Really for Me?</h1>
+            <p className="text-center text-muted-foreground !mb-8">A Guide for Students</p>
             
             <p className="text-lg leading-relaxed">
               Choosing a career path, especially after Class 10 or 12, can feel like a monumental task. If biotechnology has caught your interest, you're likely buzzing with questions. Is it the right fit? What does it really involve? Will I enjoy it? 
@@ -113,8 +148,8 @@ export default function IsBiotechForMePage() {
             
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} key={index}>
-                  <AccordionTrigger className="text-left hover:no-underline">
+                <AccordionItem value={`item-${index}`} key={index} className="border-border/70">
+                  <AccordionTrigger className="text-left hover:no-underline text-base">
                     <span className="font-semibold text-foreground">{index + 1}. {faq.question}</span>
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
