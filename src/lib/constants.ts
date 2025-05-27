@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
-import { Briefcase, ClipboardList, FlaskConical, BellRing, LibraryBig, Users2, Newspaper, Building2, MapPin } from 'lucide-react';
+import { Briefcase, ClipboardList, FlaskConical, BellRing, LibraryBig, Users2, Newspaper, Building2, MapPin, CalendarDays, UserCheck, Instagram, Linkedin, Send, Youtube } from 'lucide-react';
 
 export interface FeaturedJob {
   id: string;
@@ -55,10 +55,41 @@ export interface CommunityComment {
   dataAiHint: string;
   comment: string;
   timestamp: string;
+  location?: string;
 }
 
 export const COMMUNITY_COMMENTS: CommunityComment[] = [
-  { id: '1', user: 'Priya S.', avatarUrl: 'https://placehold.co/40x40.png', dataAiHint: 'student portrait', comment: 'BTGenZ helped me find my dream internship! The resources are amazing for students.', timestamp: '2 days ago' },
-  { id: '2', user: 'Rajesh K.', avatarUrl: 'https://placehold.co/40x40.png', dataAiHint: 'professional person', comment: 'The AI news summarizer is a game-changer. Saves me so much time keeping up with industry trends.', timestamp: '5 days ago' },
-  { id: '3', user: 'Ananya M.', avatarUrl: 'https://placehold.co/40x40.png', dataAiHint: 'scientist woman', comment: 'Great platform for connecting with other biotech enthusiasts in India. Highly recommend!', timestamp: '1 week ago' },
+  { id: '1', user: 'Ananya', location: 'Class 12, Kolkata', avatarUrl: 'https://placehold.co/40x40.png', dataAiHint: 'student girl', comment: 'BTGenZ helped me understand the reality of biotech jobs after school. Super grateful!', timestamp: '' },
+  { id: '2', user: 'Rohan', location: 'Class 10, Pune', avatarUrl: 'https://placehold.co/40x40.png', dataAiHint: 'student boy', comment: 'I was clueless about biotech after 10th. BTGenZ gave me clarity and confidence.', timestamp: '' },
+];
+
+export interface DailyUpdate {
+  id: string;
+  type: 'Job' | 'Internship';
+  title: string;
+  location: string;
+  deadline?: string;
+  forWhom: string;
+  link: string;
+}
+
+export const DAILY_UPDATES_PREVIEW: DailyUpdate[] = [
+  { id: 'du1', type: 'Internship', title: 'Research Intern (Genomics)', location: 'Bangalore', deadline: '2024-08-15', forWhom: 'B.Sc/M.Sc Biotech Students', link: '#' },
+  { id: 'du2', type: 'Job', title: 'Jr. Lab Technician', location: 'Remote/Hyderabad', deadline: '2024-08-20', forWhom: 'Diploma/B.Sc MLT/Biotech Freshers', link: '#' },
+  { id: 'du3', type: 'Internship', title: 'Content Writing (Biotech)', location: 'Work From Home', forWhom: 'Students with good writing skills', link: '#' },
+];
+
+export interface SocialLink {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  href: string;
+  label?: string;
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  { id: 'insta', name: 'Instagram', icon: Instagram, href: '#', label: 'Follow on Instagram' },
+  { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, href: '#', label: 'Connect on LinkedIn' },
+  { id: 'telegram', name: 'Telegram', icon: Send, href: '#', label: 'Join on Telegram' },
+  { id: 'youtube', name: 'YouTube', icon: Youtube, href: '#', label: 'Subscribe on YouTube (Coming Soon)' },
 ];
