@@ -21,7 +21,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Mail, Send, Loader2, Info } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { subscribeToNewsletter, handleUnsubscribeClick } from "./actions";
+import { handleUnsubscribeClick } from "./actions"; // Keep for unsubscribe placeholder
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const newsletterFormSchema = z.object({
@@ -32,11 +32,11 @@ const newsletterFormSchema = z.object({
 
 type NewsletterFormValues = z.infer<typeof newsletterFormSchema>;
 
+const WORKER_URL = 'https://btgenz-subscribers.sujay-m-1194.workers.dev';
+
 export default function NewsletterPage() {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
-  const [formError, setFormError] = useState<string | null>(null);
-  const [formSuccess, setFormSuccess] = useState<string | null>(null);
 
   const form = useForm<NewsletterFormValues>({
     resolver: zodResolver(newsletterFormSchema),
@@ -46,38 +46,49 @@ export default function NewsletterPage() {
   });
 
   async function onSubmit(data: NewsletterFormValues) {
-    setFormError(null);
-    setFormSuccess(null);
     startTransition(async () => {
       const formData = new FormData();
-      formData.append("email", data.email);
+      formData.append('email', data.email);
 
-      const result = await subscribeToNewsletter(formData);
-
-      if (result.success) {
-        toast({
-          title: "Subscribed!",
-          description: result.message,
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          body: formData,
         });
-        setFormSuccess(result.message);
-        form.reset();
-      } else {
+
+        const responseText = await res.text();
+
+        if (res.ok) {
+          toast({
+            title: "Subscribed!",
+            description: responseText || "You've been successfully subscribed.",
+          });
+          form.reset();
+        } else {
+          toast({
+            title: "Subscription Failed",
+            description: responseText || "Could not subscribe. Please try again.",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error("Subscription error:", error);
         toast({
-          title: "Subscription Failed",
-          description: result.message || "Could not subscribe. Please try again.",
+          title: "Subscription Error",
+          description: "An unexpected error occurred. Please try again.",
           variant: "destructive",
         });
-        setFormError(result.message || "Could not subscribe. Please try again.");
-        if (result.errors?.email) {
-          form.setError("email", { type: "manual", message: result.errors.email.join(", ") });
-        }
       }
     });
   }
 
   const onUnsubscribeClick = async () => {
     const result = await handleUnsubscribeClick();
-    alert(result.message); // Simple alert for now
+    // Using toast for consistency instead of alert
+    toast({
+        title: "Unsubscribe Information",
+        description: result.message,
+    });
   };
 
   return (
@@ -114,25 +125,6 @@ export default function NewsletterPage() {
                   )}
                 />
 
-                {formSuccess && (
-                  <Alert variant="default" className="bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-700 text-left">
-                    <Send className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    <AlertTitle className="text-green-700 dark:text-green-300 font-semibold">Success!</AlertTitle>
-                    <AlertDescription className="text-green-600 dark:text-green-400">
-                      {formSuccess}
-                    </AlertDescription>
-                  </Alert>
-                )}
-                {formError && (
-                  <Alert variant="destructive" className="text-left">
-                    <Info className="h-4 w-4" />
-                    <AlertTitle className="font-semibold">Subscription Error</AlertTitle>
-                    <AlertDescription>
-                      {formError}
-                    </AlertDescription>
-                  </Alert>
-                )}
-
                 <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isPending}>
                   {isPending ? (
                     <>
@@ -156,11 +148,11 @@ export default function NewsletterPage() {
             </p>
              <Alert variant="default" className="mt-8 text-left text-sm">
               <Info className="h-4 w-4" />
-              <AlertTitle>About Email Storage & Updates</AlertTitle>
+              <AlertTitle>Newsletter Service</AlertTitle>
               <AlertDescription>
-                Currently, email subscriptions are simulated for demonstration. For full functionality,
-                integration with a backend database (like Supabase or Firebase) is required to store emails
-                and manage newsletter campaigns. The "Unsubscribe" link is also a placeholder.
+                Email subscriptions are handled by our backend service. For full functionality,
+                including managing newsletter campaigns and a comprehensive unsubscribe process, further
+                backend integration may be required. The "Unsubscribe" link above is a placeholder for now.
               </AlertDescription>
             </Alert>
           </div>
