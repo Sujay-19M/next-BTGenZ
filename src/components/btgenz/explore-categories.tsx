@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { EXPLORE_CATEGORIES } from '@/lib/constants';
@@ -25,8 +26,11 @@ export function ExploreCategories() {
                 <CardDescription>{category.description}</CardDescription>
               </CardContent>
               <div className="p-6 pt-0">
-                 <Button variant="ghost" className="text-primary group-hover:underline p-0">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                 <Button
+                    variant="link"
+                    className="p-0 text-primary group-hover:text-accent group-hover:underline group-hover:scale-105 transition-all duration-200 ease-in-out"
+                  >
+                    Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 ease-in-out group-hover:translate-x-1" />
                 </Button>
               </div>
             </Card>
