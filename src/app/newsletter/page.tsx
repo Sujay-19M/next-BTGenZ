@@ -1,3 +1,4 @@
+"use client";
 
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
@@ -5,6 +6,7 @@ import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail } from 'lucide-react';
+import React from 'react';
 
 export default function NewsletterPage() {
   // Basic form handling simulation
