@@ -44,7 +44,7 @@ export function DailyUpdatesPreview() {
       </div>
       <div className="text-center">
         <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform transition-transform hover:scale-105">
-          <Link href="#"> {/* Placeholder for Notion page or future blog page */}
+          <Link href="/blog/job-alerts">
             Browse All Opportunities
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
