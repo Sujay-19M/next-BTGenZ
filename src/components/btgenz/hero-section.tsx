@@ -1,7 +1,9 @@
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 export function HeroSection() {
   return (
@@ -19,16 +21,16 @@ export function HeroSection() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform transition-transform hover:scale-105" asChild>
-            <a href="#career-guide"> {/* Link to Career Guide Block */}
+            <Link href="/contact">
               Get Career Guidance
               <ChevronRight className="ml-2 h-5 w-5" />
-            </a>
+            </Link>
           </Button>
           <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 shadow-lg transform transition-transform hover:scale-105" asChild>
-             <a href="#daily-updates"> {/* Link to Daily Updates Preview */}
+             <Link href="/newsletter">
               Follow Daily Job Updates
               <ChevronRight className="ml-2 h-5 w-5" />
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
