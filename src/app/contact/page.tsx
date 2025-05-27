@@ -21,7 +21,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { FOOTER_CONTACT_EMAIL } from '@/lib/constants';
-import { Mail, Send, Loader2, Info } from 'lucide-react';
+import { Mail, Send, Loader2, Info, MessageCircleQuestion, Lightbulb, Handshake } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { submitContactForm } from "./actions";
 import { contactFormSchema, type ContactFormValues } from "./contact-validation";
@@ -61,6 +61,11 @@ export default function ContactPage() {
             variant: "destructive",
           });
           setFormError(result.message || "Failed to send message.");
+          if (result.errors) {
+            // Optionally, you could iterate through result.errors and set specific form errors
+            // For now, just showing the general message.
+            console.error("Validation errors:", result.errors);
+          }
         }
       } catch (error) {
         toast({
@@ -78,33 +83,43 @@ export default function ContactPage() {
       <Header />
       <main className="flex-grow">
         <SectionWrapper>
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-primary mb-4">Contact Us</h1>
-              <p className="text-lg text-muted-foreground">
-                Have questions, suggestions, or just want to say hello? We'd love to hear from you!
-                Fill out the form below or email us directly.
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                We're thrilled to hear from you! Whether you have questions, innovative ideas,
+                or just want to connect, here's how you can reach us.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-10 items-start">
-              <div className="space-y-6 bg-card p-6 sm:p-8 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-semibold text-primary">Get in Touch</h2>
+              <div className="space-y-8 bg-card p-6 sm:p-8 rounded-lg shadow-lg">
+                <h2 className="text-2xl font-semibold text-primary">Connect with BTGenZ</h2>
                  <p className="text-muted-foreground">
-                  You can reach us via email for any inquiries. We typically respond within 24-48 hours.
+                  We're here to help and listen. You can reach us for:
+                </p>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start">
+                    <MessageCircleQuestion className="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0" />
+                    <span>General inquiries and questions about biotechnology careers.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Lightbulb className="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0" />
+                    <span>Feedback, suggestions, or ideas to improve BTGenZ.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Handshake className="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0" />
+                    <span>Collaboration opportunities or partnership proposals.</span>
+                  </li>
+                </ul>
+                <p className="text-muted-foreground">
+                  Feel free to email us directly. We aim to respond within 24-48 hours.
                 </p>
                 <a href={`mailto:${FOOTER_CONTACT_EMAIL}`} className="inline-flex items-center">
-                  <Button variant="outline" size="lg">
+                  <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10">
                     <Mail className="mr-2 h-5 w-5" /> Email Us: {FOOTER_CONTACT_EMAIL}
                   </Button>
                 </a>
-                <Alert>
-                  <Info className="h-4 w-4" />
-                  <AlertTitle className="font-semibold">Note on Email Sending</AlertTitle>
-                  <AlertDescription className="text-xs">
-                    The contact form on this page simulates sending an email. For actual email functionality in a production app, an email service provider (e.g., Resend, SendGrid) would need to be configured.
-                  </AlertDescription>
-                </Alert>
               </div>
 
               <div className="bg-card p-6 sm:p-8 rounded-lg shadow-lg">
@@ -145,7 +160,7 @@ export default function ContactPage() {
                           <FormLabel>Message</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell us how we can help..."
+                              placeholder="Tell us how we can help, share your thoughts, or ask a question..."
                               className="resize-none"
                               rows={5}
                               {...field}
@@ -157,10 +172,10 @@ export default function ContactPage() {
                       )}
                     />
                     {formSuccess && (
-                      <Alert variant="default" className="bg-green-50 border-green-300">
-                        <Send className="h-4 w-4 text-green-600" />
-                        <AlertTitle className="text-green-700 font-semibold">Success!</AlertTitle>
-                        <AlertDescription className="text-green-600">
+                      <Alert variant="default" className="bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-700">
+                        <Send className="h-4 w-4 text-green-600 dark:text-green-400" />
+                        <AlertTitle className="text-green-700 dark:text-green-300 font-semibold">Success!</AlertTitle>
+                        <AlertDescription className="text-green-600 dark:text-green-400">
                           {formSuccess}
                         </AlertDescription>
                       </Alert>
@@ -174,7 +189,7 @@ export default function ContactPage() {
                         </AlertDescription>
                       </Alert>
                     )}
-                    <Button type="submit" className="w-full" disabled={isPending}>
+                    <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isPending}>
                       {isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
