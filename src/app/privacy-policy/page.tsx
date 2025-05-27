@@ -10,9 +10,11 @@ export default function PrivacyPolicyPage() {
   const [lastUpdatedDate, setLastUpdatedDate] = useState('');
 
   useEffect(() => {
+    // Set date on client-side to avoid hydration mismatch
     setLastUpdatedDate(new Date().toLocaleDateString());
   }, []);
 
+  // Fallback for contact email if environment variable is not set
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
 
   return (
@@ -20,6 +22,7 @@ export default function PrivacyPolicyPage() {
       <Header />
       <main className="flex-grow">
         <SectionWrapper>
+          {/* The 'prose' class handles typography, spacing, and heading styles */}
           <div className="max-w-3xl mx-auto prose dark:prose-invert">
             <h1 className="text-4xl font-bold text-primary mb-6 text-center">Privacy Policy</h1>
             {lastUpdatedDate && <p className="text-center text-sm text-muted-foreground mb-8">Last updated: {lastUpdatedDate}</p>}
@@ -61,7 +64,7 @@ export default function PrivacyPolicyPage() {
             <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
 
             <h2>Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
+            <p>If you have any questions about this Privacy Policy, please contact us at: <a href={`mailto:${contactEmail}`} className="text-primary hover:underline">{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>
