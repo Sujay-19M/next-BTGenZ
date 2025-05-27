@@ -1,32 +1,60 @@
 
 "use server";
 
+import { Resend } from 'resend';
 import type { ContactFormValues } from "./contact-validation";
-// Optionally, you could import contactFormSchema here as well if you wanted to perform
-// server-side validation again, though react-hook-form with zodResolver handles client-side.
-// import { contactFormSchema } from "./contact-validation";
+import { contactFormSchema } from "./contact-validation";
 
-export async function submitContactForm(data: ContactFormValues) {
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
+// Initialize Resend with the API key from environment variables
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-  // Example of server-side validation (optional if client-side is trusted for this simulation)
-  // const parsedData = contactFormSchema.safeParse(data);
-  // if (!parsedData.success) {
-  //   return { success: false, message: "Invalid data received.", errors: parsedData.error.flatten().fieldErrors };
-  // }
+const PRIMARY_EMAIL = "connect@btgenz.in";
+const SECONDARY_EMAIL = "msujay.work@gmail.com";
 
-  // In a real application, you would integrate an email service here.
-  // For example, using Resend, SendGrid, or Nodemailer with an SMTP provider.
-  console.log("Contact Form Submitted (Server Action):");
-  console.log("Name:", data.name);
-  console.log("Email:", data.email);
-  console.log("Message:", data.message);
-  console.log(`Simulated: Would send email to connect@btgenz.in and msujay.work@gmail.com`);
+export async function submitContactForm(data: ContactFormValues): Promise<{ success: boolean; message: string; errors?: any }> {
+  // Server-side validation
+  const parsedData = contactFormSchema.safeParse(data);
+  if (!parsedData.success) {
+    return { success: false, message: "Invalid data received.", errors: parsedData.error.flatten().fieldErrors };
+  }
 
-  // Simulate success
-  return { success: true, message: "Your message has been sent successfully! We'll get back to you soon." };
-  
-  // Example of error simulation:
-  // return { success: false, message: "Failed to send message. Please try again later." };
+  if (!resend) {
+    console.error("Resend API key is not configured. Email not sent.");
+    return { success: false, message: "Email service is not configured. Please contact support." };
+  }
+
+  const { name, email, message } = parsedData.data;
+
+  try {
+    const emailData = await resend.emails.send({
+      from: 'BTGenZ Contact <onboarding@resend.dev>', // Using Resend's default sending address
+      to: [PRIMARY_EMAIL, SECONDARY_EMAIL],
+      subject: `New Contact Form Submission from ${name}`,
+      reply_to: email, // Set the user's email as the reply-to address
+      html: `
+        <h1>New Contact Form Submission</h1>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `
+    });
+
+    if (emailData.error) {
+      console.error("Resend API Error:", emailData.error);
+      return { success: false, message: `Failed to send message due to an API error: ${emailData.error.message}` };
+    }
+
+    console.log("Email sent successfully! ID:", emailData.data?.id);
+    return { success: true, message: "Your message has been sent successfully! We'll get back to you soon." };
+
+  } catch (error: any) {
+    console.error("Error sending email:", error);
+    // It's good practice to avoid exposing too much detail about internal errors to the client.
+    let errorMessage = "An unexpected error occurred while sending your message. Please try again later.";
+    if (error.message) {
+      errorMessage = `Failed to send message: ${error.message}. Please try again.`;
+    }
+    return { success: false, message: errorMessage };
+  }
 }
