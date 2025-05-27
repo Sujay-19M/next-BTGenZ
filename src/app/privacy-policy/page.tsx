@@ -1,24 +1,36 @@
 
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 
 export default function PrivacyPolicyPage() {
+  const [lastUpdatedDate, setLastUpdatedDate] = useState('');
+
+  useEffect(() => {
+    setLastUpdatedDate(new Date().toLocaleDateString());
+  }, []);
+
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
+
   return (
     <>
       <Header />
       <main className="flex-grow">
         <SectionWrapper>
-          <div className="py-16 max-w-3xl mx-auto prose dark:prose-invert">
+          <div className="max-w-3xl mx-auto prose dark:prose-invert">
             <h1 className="text-4xl font-bold text-primary mb-6 text-center">Privacy Policy</h1>
-            <p>Last updated: {new Date().toLocaleDateString()}</p>
+            {lastUpdatedDate && <p className="text-center text-sm text-muted-foreground mb-8">Last updated: {lastUpdatedDate}</p>}
             
             <p>BTGenZ ("us", "we", or "our") operates the BTGenZ website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
 
             <h2>Information Collection and Use</h2>
             <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+            
             <h3>Types of Data Collected</h3>
+            
             <h4>Personal Data</h4>
             <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
             <ul>
