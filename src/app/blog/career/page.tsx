@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Lightbulb, Milestone, Dna, Leaf, Factory, TestTube, BrainCircuit, Sparkles, Target, CheckCircle, Microscope, BookOpen, Users } from 'lucide-react';
+import { Lightbulb, Milestone, Dna, Leaf, Factory, TestTube, BrainCircuit, Sparkles, Target, CheckCircle, Microscope, BookOpen, Users, LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 
 interface CareerField {
@@ -134,7 +134,7 @@ export default function CareerGuidancePage() {
                     width={600} 
                     height={400} 
                     className="mx-auto rounded-md shadow-md"
-                    data-ai-hint="career path diagram"
+                    data-ai-hint="biotech tree"
                   />
                   <p className="mt-4 text-muted-foreground">
                     (Imagine a visual diagram here showing how foundational sciences branch into applied biotech fields like medical, agricultural, industrial, and computational biotechnology, further branching into specific roles like geneticist, bioprocess engineer, bioinformatician, etc.)
@@ -208,3 +208,5 @@ export default function CareerGuidancePage() {
     </>
   );
 }
+
+    
