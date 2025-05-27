@@ -1,18 +1,29 @@
 
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
+import { FOOTER_CONTACT_EMAIL } from '@/lib/constants';
 
 export default function CopyrightPage() {
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
+  const [lastUpdatedDate, setLastUpdatedDate] = useState('');
+
+  useEffect(() => {
+    setLastUpdatedDate(new Date().toLocaleDateString());
+  }, []);
+  
+  const contactEmail = FOOTER_CONTACT_EMAIL;
+
   return (
     <>
       <Header />
       <main className="flex-grow">
         <SectionWrapper>
-          <div className="py-16 max-w-3xl mx-auto prose dark:prose-invert">
-            <h1 className="text-4xl font-bold text-primary mb-6 text-center">Copyright Information</h1>
-             <p>Last updated: {new Date().toLocaleDateString()}</p>
+          <div className="max-w-3xl mx-auto prose dark:prose-invert">
+            <h1 className="text-primary text-center">Copyright Information</h1>
+            {lastUpdatedDate && <p className="text-center text-sm text-muted-foreground">Last updated: {lastUpdatedDate}</p>}
 
             <p>All content included on this site, such as text, graphics, logos, images, as well as the compilation thereof, and any software used on the site, is the property of BTGenZ or its suppliers and protected by copyright and other laws that protect intellectual property and proprietary rights. You agree to observe and abide by all copyright and other proprietary notices, legends or other restrictions contained in any such content and will not make any changes thereto.</p>
 
@@ -21,7 +32,7 @@ export default function CopyrightPage() {
             <p>We respect the intellectual property of others. If you believe that your work has been copied in a way that constitutes copyright infringement, please contact us with the details.</p>
 
             <h2>Contact Us</h2>
-            <p>For any copyright-related inquiries, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
+            <p>For any copyright-related inquiries, please contact us at: <a href={`mailto:${contactEmail}`} className="text-primary hover:underline">{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>

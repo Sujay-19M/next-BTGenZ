@@ -1,18 +1,29 @@
 
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SectionWrapper } from '@/components/layout/section-wrapper';
+import { FOOTER_CONTACT_EMAIL } from '@/lib/constants';
 
 export default function DisclaimerPage() {
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@btgenz.com";
+  const [lastUpdatedDate, setLastUpdatedDate] = useState('');
+
+  useEffect(() => {
+    setLastUpdatedDate(new Date().toLocaleDateString());
+  }, []);
+
+  const contactEmail = FOOTER_CONTACT_EMAIL;
+
   return (
     <>
       <Header />
       <main className="flex-grow">
         <SectionWrapper>
-          <div className="py-16 max-w-3xl mx-auto prose dark:prose-invert">
-            <h1 className="text-4xl font-bold text-primary mb-6 text-center">Disclaimer</h1>
-            <p>Last updated: {new Date().toLocaleDateString()}</p>
+          <div className="max-w-3xl mx-auto prose dark:prose-invert">
+            <h1 className="text-primary text-center">Disclaimer</h1>
+            {lastUpdatedDate && <p className="text-center text-sm text-muted-foreground">Last updated: {lastUpdatedDate}</p>}
 
             <p>The information provided by BTGenZ ("we," "us," or "our") on this website is for general informational purposes only. All information on the site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.</p>
 
@@ -29,7 +40,7 @@ export default function DisclaimerPage() {
             <p>The site may contain testimonials by users of our products and/or services. These testimonials reflect the real-life experiences and opinions of such users. However, the experiences are personal to those particular users, and may not necessarily be representative of all users of our products and/or services. We do not claim, and you should not assume, that all users will have the same experiences.</p>
 
             <h2>Contact Us</h2>
-            <p>If you have any questions about this Disclaimer, please contact us at: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
+            <p>If you have any questions about this Disclaimer, please contact us at: <a href={`mailto:${contactEmail}`} className="text-primary hover:underline">{contactEmail}</a></p>
           </div>
         </SectionWrapper>
       </main>

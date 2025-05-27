@@ -30,9 +30,9 @@ export interface ExploreCategory {
 }
 
 export const EXPLORE_CATEGORIES: ExploreCategory[] = [
-  { id: '1', name: 'Biotech Internships', description: 'Gain hands-on experience with leading biotech companies.', icon: Briefcase, link: '#' },
-  { id: '2', name: 'Government Exams', description: 'Explore opportunities in public sector biotech roles.', icon: ClipboardList, link: '#' },
-  { id: '3', name: 'Research Roles', description: 'Contribute to cutting-edge research and innovation.', icon: FlaskConical, link: '#' },
+  { id: '1', name: 'Biotech Internships', description: 'Gain hands-on experience with leading biotech companies.', icon: Briefcase, link: '/blog/internships' },
+  { id: '2', name: 'Government Exams', description: 'Explore opportunities in public sector biotech roles.', icon: ClipboardList, link: '/blog/govt-exams' },
+  { id: '3', name: 'Research Roles', description: 'Contribute to cutting-edge research and innovation.', icon: FlaskConical, link: '#' }, // Assuming this might link to a specific section or a general job board filtered for research
 ];
 
 export interface ValueProposition {
@@ -203,7 +203,7 @@ export const FOOTER_QUICK_LINKS: NavLinkItem[] = [
   { href: '/privacy-policy', label: 'Privacy Policy' },
 ];
 
-export const FOOTER_CONTACT_EMAIL = "support@btgenz.com";
+export const FOOTER_CONTACT_EMAIL = "connect@btgenz.in"; // Updated primary email
+export const SECONDARY_CONTACT_EMAIL = "msujay.work@gmail.com";
 export const FOOTER_PHONE_NUMBER = "+91-XXXXXXXXXX"; // Replace with actual number if available
-
     
