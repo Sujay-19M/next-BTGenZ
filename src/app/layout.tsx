@@ -1,8 +1,10 @@
+
 import type {Metadata} from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
+import { FloatingSubscribeButton } from '@/components/btgenz/FloatingSubscribeButton'; // Added import
 
 export const metadata: Metadata = {
   title: 'BTGenZ - Your Gateway to Biotech Careers in India',
@@ -19,6 +21,7 @@ export default function RootLayout({
       <body className={`antialiased flex flex-col min-h-screen bg-background text-foreground`}>
         {children}
         <Toaster />
+        <FloatingSubscribeButton /> {/* Added component */}
       </body>
     </html>
   );

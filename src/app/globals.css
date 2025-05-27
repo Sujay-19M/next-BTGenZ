@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -105,5 +106,22 @@ body {
 
   .pause-on-hover:hover {
     animation-play-state: paused;
+  }
+
+  /* Added for Floating Subscribe Button */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 3px hsl(var(--primary)), 0 0 6px hsl(var(--primary));
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px hsl(var(--primary)), 0 0 18px hsl(var(--primary));
+    }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2.5s infinite ease-in-out;
   }
 }
