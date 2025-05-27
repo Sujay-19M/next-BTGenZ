@@ -33,7 +33,7 @@ export function CtaConnectFollow() {
           </TooltipProvider>
         </div>
         <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg transform transition-transform hover:scale-105">
-          <Link href={SOCIAL_LINKS.find(s => s.id === 'instagram')?.href || '#'}> {/* Default to Instagram or a general follow page */}
+          <Link href="https://www.linkedin.com/company/btgenz/" target="_blank" rel="noopener noreferrer">
             Follow BTGenZ Now
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
