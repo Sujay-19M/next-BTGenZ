@@ -91,3 +91,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes marquee-slow {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(calc(-100% / 2 - var(--gap-width, 0px) / 2)); } /* Adjust for gap */
+  }
+
+  .animate-marquee-slow {
+    animation: marquee-slow var(--marquee-duration, 30s) linear infinite;
+    width: max-content; /* Ensure the container is wide enough for all items */
+  }
+
+  .pause-on-hover:hover {
+    animation-play-state: paused;
+  }
+}
