@@ -1,11 +1,19 @@
 
+"use client";
+
 import Link from 'next/link';
 import { Dna } from 'lucide-react';
 import { SOCIAL_LINKS, FOOTER_ABOUT_TEXT, FOOTER_QUICK_LINKS, FOOTER_CONTACT_EMAIL, type SocialLink, type NavLinkItem } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-muted/50 border-t">
       <div className="container mx-auto px-4 md:px-6 py-12">
@@ -62,12 +70,14 @@ export function Footer() {
       </div>
       <div className="bg-muted py-6">
         <div className="container mx-auto px-4 md:px-6 text-center text-muted-foreground text-sm">
-          <p>&copy; {currentYear} BTGenZ. All rights reserved.</p>
+          {currentYear !== null ? (
+            <p>&copy; {currentYear} BTGenZ. All rights reserved.</p>
+          ) : (
+            <p>&copy; BTGenZ. All rights reserved.</p> // Fallback or loading state
+          )}
           <p>Empowering the next generation of biotech leaders in India.</p>
         </div>
       </div>
     </footer>
   );
 }
-
-    
